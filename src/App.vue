@@ -1,22 +1,11 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
+import navigator from '@/components/navigator/index.vue'
 </script>
 
 <template>
-  <header>
-    <div class="wrapper">
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/video">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
+  <navigator />
   <RouterView />
 </template>
 
-<style lang="less" scoped>
-.wrapper {
-  background-color: antiquewhite;
-}
-</style>
+<style lang="less" scoped></style>
