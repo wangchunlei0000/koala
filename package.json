@@ -8,8 +8,10 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "@videojs-player/vue": "^1.0.0",
     "ant-design-vue": "^3.2.11",
     "pinia": "^2.0.17",
+    "video.js": "^7.20.2",
     "vue": "^3.2.37",
     "vue-router": "^4.1.3"
   },
