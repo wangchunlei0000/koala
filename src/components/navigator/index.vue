@@ -1,11 +1,20 @@
 <script setup>
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { ref, watch } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 
 const router = useRouter()
+const route = useRoute()
 
 const currentKey = ref(['home'])
 
+watch(
+  () => {
+    return route.name
+  },
+  val => {
+    currentKey.value = [val]
+  },
+)
 const changeKey = ({ key }) => {
   currentKey.value = [key]
   router.push({ name: key })
@@ -24,6 +33,7 @@ const changeKey = ({ key }) => {
         </a-menu-item-group>
       </a-sub-menu>
       <a-menu-item key="todolist"> TODOLIST </a-menu-item>
+      <a-menu-item key="indexDB"> indexDB </a-menu-item>
     </a-menu>
   </div>
 </template>
