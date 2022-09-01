@@ -4,7 +4,6 @@ import { useRouter, useRoute } from 'vue-router'
 
 const router = useRouter()
 const route = useRoute()
-
 const currentKey = ref(['home'])
 
 watch(
@@ -15,6 +14,7 @@ watch(
     currentKey.value = [val]
   },
 )
+
 const changeKey = ({ key }) => {
   currentKey.value = [key]
   router.push({ name: key })
