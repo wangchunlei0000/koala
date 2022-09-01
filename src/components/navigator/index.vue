@@ -23,6 +23,7 @@ const changeKey = ({ key }) => {
           <a-menu-item key="video2">xgplayer</a-menu-item>
         </a-menu-item-group>
       </a-sub-menu>
+      <a-menu-item key="todolist"> TODOLIST </a-menu-item>
     </a-menu>
   </div>
 </template>
