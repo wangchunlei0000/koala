@@ -86,9 +86,10 @@ const handleOk = () => {
 
 <style lang="less" scoped>
 .wrapper {
-  margin: 10px;
+  margin: 50px;
   padding: 50px 100px;
   border: 1px solid #ddd;
+  width: 800px;
 }
 .modal-wrapper {
   padding: 50px;
