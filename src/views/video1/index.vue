@@ -81,14 +81,8 @@ onMounted(() => {
 </template>
 
 <style lang="less" scoped>
-.video-js {
-  .vjs-big-play-button {
-    width: 72px;
-    height: 72px;
-    border-radius: 100%;
-    z-index: 100;
-    background-color: #ffffff;
-    border: solid 1px #979797;
-  }
+.wrapper {
+  width: 1000px;
+  margin: 50px 0 0 50px;
 }
 </style>
