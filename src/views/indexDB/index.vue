@@ -7,15 +7,12 @@ const database = ref(null)
 const list = ref([])
 const add = () => {
   const obj = {
-    fileName: `filename=======${title.value}`,
-    size: '@@@@@@',
-    path: `${title.value}/aa/vv/ccasd/sadas/das/dasdas/dasd/asdas/dasd/asdas`,
+    fileName: `name=======${title.value}`,
   }
   database.value.add(obj)
-  console.log('ok')
 }
-const getAll = () => {
-  list.value = database.value.getAll()
+const getAll = async () => {
+  list.value = await database.value.getAll()
 }
 onMounted(() => {
   database.value = new DataBase('WANG')
@@ -29,9 +26,9 @@ onMounted(() => {
     <a-button @click="getAll">GETALL</a-button>
 
     <div class="list-wrapper">
-      <div class="list-item" v-for="{ uuid, fileName, size } in list" :key="uuid">
+      <div class="list-item" v-for="{ uuid, fileName } in list" :key="uuid">
+        {{ uuid }}
         {{ fileName }}
-        {{ size }}
       </div>
     </div>
   </div>

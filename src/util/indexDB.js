@@ -19,15 +19,16 @@ class DataBase {
   constructor(databaseName) {
     this.request = null
     this.db = null
-    this.list = []
     this.init(databaseName)
   }
 
   init(databaseName) {
-    if(window.indexedDB) {
+    if (window.indexedDB) {
       // 创建/打开数据库实例
       this.request = window.indexedDB.open(databaseName, 2)
+      // 数据库准备就绪
       this.request.onsuccess = this.requestSuccess(this)
+      // 数据库准备就绪，但版本过时
       this.request.onupgradeneeded = this.requestUpgrade(this)
     }
   }
@@ -49,27 +50,34 @@ class DataBase {
       // 第一个参数：索引名
       // 第二个参数：索引在表中对应的名称
       // 第三个参数：{ 是否唯一 }
-      store.createIndex("uuid", "uuid", { unique: false })
+      store.createIndex('uuid', 'uuid', { unique: false })
     }
   }
 
+  unwrap(request) {
+    return new Promise((resolve, reject) => {
+      request.onerror = function () {
+        reject(request.error)
+      }
+      request.onsuccess = function () {
+        resolve(request.result)
+      }
+    })
+  }
+
   add(obj) {
+    // 创建事务
     const transaction = this.db.transaction(['files'], 'readwrite')
+    // 获取对象库进行操作
     const store = transaction.objectStore('files')
     const uuid = getUuid()
     store.put(Object.assign(obj, { uuid }), uuid)
   }
-  getAll() {
-    const store = this.db.transaction(['files']).objectStore('files');
-    const that = this
-    store.openCursor().onsuccess = function (event) {
-      const cursor = event.target.result;
-      if (cursor) {
-        that.list.push(cursor.value)
-        cursor.continue();
-      }
-    }
-    return this.list
+  async getAll() {
+    const store = this.db.transaction(['files']).objectStore('files')
+    const temp = await this.unwrap(store.getAll())
+    console.log('%c 🎂 temp', 'color:#93c0a4', temp)
+    return temp
   }
 }
 
