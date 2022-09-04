@@ -22,6 +22,11 @@ export const useTodolist = defineStore('todolist', {
       ],
     }
   },
+  getters: {
+    fakeList: state => {
+      return state.list.concat([{ title: 'test', description: 'test description', done: false }])
+    },
+  },
   actions: {
     addListItem(data) {
       this.list.unshift(data)
