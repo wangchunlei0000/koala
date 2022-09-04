@@ -3,7 +3,7 @@ import { useTodolist } from '@/stores/todolist.js'
 import { storeToRefs } from 'pinia'
 import { ref, watch, computed } from 'vue'
 const store = useTodolist()
-console.log('%c 🍑 store', 'color:#ed9ec7', store.fakeList)
+// console.log('%c 🍑 store', 'color:#ed9ec7', store.fakeList)
 let visible = ref(false)
 let title = ref('')
 let description = ref('')
